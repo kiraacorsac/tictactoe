@@ -2,25 +2,19 @@ import logo from './logo.svg';
 import './App.css';
 import Clicker from "./components/Clicker"
 import Paragraph from "./components/Paragraph"
+import Square from './components/Square';
+import GameBoard from './components/GameBoard';
 function App() {
 
-
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Clicker></Clicker>
-        <Paragraph></Paragraph>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+
       </header>
+      <main>
+
+        <GameBoard></GameBoard>
+      </main>
     </div>
   );
 }
