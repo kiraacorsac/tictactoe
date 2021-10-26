@@ -1,16 +1,9 @@
 import { useState } from "react"
 import style from "./Square.module.css";
 
-export default function Square() {
+export default function Square(props) {
 
-
-    const [mark, setMark] = useState("");
-
-    function clickToSetMark() {
-        setMark("X");
-    }
-
-    return <div className={style.singleSquare} onClick={() => clickToSetMark()}>
-        {mark}
+    return <div className={style.singleSquare} onClick={props.onClick} >
+        {props.board[props.id]}
     </div >
 }
