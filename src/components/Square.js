@@ -7,10 +7,10 @@ export default function Square() {
     const [mark, setMark] = useState("");
 
     function clickToSetMark() {
-        setMark("O");
+        setMark("X");
     }
 
-    return <div className={style.square} onClick={clickToSetMark} >
+    return <div className={style.singleSquare} onClick={() => clickToSetMark()}>
         {mark}
-    </div>
+    </div >
 }
