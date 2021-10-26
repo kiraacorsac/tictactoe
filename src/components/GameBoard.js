@@ -19,10 +19,13 @@ export default function GameBoard() {
 
     function clickToSetMark(id) {
         const newBoardState = boardState.slice();
+        console.log(id, newBoardState[id]);
+
         newBoardState[id] = switchMark();
         setBoardState(newBoardState);
-    }
+        console.log(id, newBoardState);
 
+    }
     return <div>
         <div className={style.row}>
             <Square id="0" board={boardState} onClick={() => clickToSetMark(0)}></Square>
