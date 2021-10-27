@@ -20,32 +20,58 @@ export default function GameBoard() {
         var cellTest = { 0: [1, 3, 4], 1: 3, 2: [2, 3], 3: 1, 6: 1 };
         let signs = ["X", "O"]
 
-        console.log(cellTest, cellTest[6], cellTest["6"], Object.keys(cellTest))
+        // console.log(cellTest, cellTest[6], cellTest["6"], Object.keys(cellTest))
 
 
         for (let position in cellTest) {
 
-            console.log(position);
-            console.log("IS it showing ?", Object.keys(position), cellTest[position], newBoardState[position]);
+            console.log("Position", position);
+            // console.log("IS it showing ?", Object.keys(position), cellTest[position], newBoardState[position]);
+            console.log("IS it showing ?", cellTest[position]);
+
+            const cellList = cellTest[position]
+            console.log(cellList)
+            try {
+                for (let factor of cellList) {
+                    console.log("I am a factor, part of a list", factor);
+                    let pos1 = parseInt(position)
+                    let pos2 = pos1 + parseInt(factor)
+                    let pos3 = pos2 + parseInt(factor)
+                    console.log(pos1, pos2, pos3)
+                    for (let sign in signs) {
+                        console.log("sign", signs[sign]);
+
+
+                        console.log(signs[sign], newBoardState[0]);
+
+
+                        if (signs[sign] == newBoardState[pos1] && signs[sign] == newBoardState[pos2] && signs[sign] == newBoardState[pos3]) {
+                            alert("We have a Winner!");
+                            console.log("Winner streak:", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]);
+                        } else { console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]) };
+                    }
+
+                }
+            } catch {
+                console.log("It is not a list", cellList)
+                let pos1 = parseInt(position)
+                let pos2 = pos1 + parseInt(cellList)
+                let pos3 = pos2 + parseInt(cellList)
+                console.log(pos1, pos2, pos3)
+                for (let sign in signs) {
+                    console.log("sign", signs[sign]);
+
+
+                    console.log(signs[sign], newBoardState[0]);
+
+
+                    if (signs[sign] == newBoardState[pos1] && signs[sign] == newBoardState[pos2] && signs[sign] == newBoardState[pos3]) {
+                        alert("We have a Winner!");
+                        console.log("Winner streak:", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]);
+                    } else { console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]) };
+                }
+            }
         }
-
-        for (let sign in signs) {
-            console.log("sign", signs[sign]);
-
-
-            console.log(signs[sign], newBoardState[0]);
-
-
-            if (signs[sign] == newBoardState[0] && signs[sign] == newBoardState[1] && signs[sign] == newBoardState[2]) {
-                alert("We have a Winner!");
-                console.log("Winner streak:", signs[sign], newBoardState[0], newBoardState[1], newBoardState[2]);
-            } else { console.log("no winner yet", signs[sign], newBoardState[0], newBoardState[1], newBoardState[2]) };
-        }
-
-
-
-
-
     }
 
     function clickToSetMark(id) {
