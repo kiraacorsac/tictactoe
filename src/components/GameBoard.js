@@ -21,13 +21,19 @@ export default function GameBoard() {
         let backslash = [2, 4, 6];
         let signs = ["X", "O"]
 
-        // for (let sign in signs) {
-        console.log(signs[1], newBoardState[0]);
-        if (signs[1] == newBoardState[0] && signs[1] == newBoardState[1] && signs[1] == newBoardState[2]) {
-            alert("We have a Winner!")
-        } else { console.log("no winner yet") };
+        for (let sign in signs) {
+            console.log("sign", signs[sign]);
 
-        // }
+
+            console.log(signs[sign], newBoardState[0]);
+
+
+            if (signs[sign] == newBoardState[0] && signs[sign] == newBoardState[1] && signs[sign] == newBoardState[2]) {
+                alert("We have a Winner!");
+                console.log("Winner streak:", signs[sign], newBoardState[0], newBoardState[1], newBoardState[2]);
+            } else { console.log("no winner yet", signs[sign], newBoardState[0], newBoardState[1], newBoardState[2]) };
+        }
+
 
 
 
