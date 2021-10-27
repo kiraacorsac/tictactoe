@@ -15,19 +15,24 @@ export default function GameBoard() {
 
         return player;
     }
-    // function findaWinner() {
+    function findaWinner(newBoardState) {
 
-    //     // let patterns =[[0,1,2],[3,4,5], [6,7,8],[0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
-    //     // for (let pattern in patterns) {
-    //     // for (let id in pattern){
+        let patterns = [1, 3, 4];
+        let backslash = [2, 4, 6];
+        let signs = ["X", "O"]
 
-    //     // }
+        // for (let sign in signs) {
+        console.log(signs[1], newBoardState[0]);
+        if (signs[1] == newBoardState[0] && signs[1] == newBoardState[1] && signs[1] == newBoardState[2]) {
+            alert("We have a Winner!")
+        } else { console.log("no winner yet") };
 
-    //     let patterns = [1, 3, 4]
+        // }
 
-    // }
 
-    // }
+
+
+    }
 
     function clickToSetMark(id) {
         const newBoardState = boardState.slice();
@@ -38,9 +43,10 @@ export default function GameBoard() {
             newBoardState[id] = switchMark();
             setBoardState(newBoardState);
             console.log(id, newBoardState, newBoardState[id]);
+            findaWinner(newBoardState);
         } else { alert("You already used that cell. Choose another cell.") }
     }
-    return <div>
+    return <div className={style.box}>
         <div className={style.row}>
             <Square id="0" board={boardState} onClick={() => clickToSetMark(0)}></Square>
             <Square id="1" board={boardState} onClick={() => clickToSetMark(1)}></Square>
