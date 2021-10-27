@@ -78,6 +78,26 @@ export default function GameBoard() {
         }
     }
 
+
+    function plateFull(newBoardState) {
+
+        if (newBoardState.includes("")) {
+            console.log("There is still some room.")
+
+        } else {
+            let message = ("Game Over, No Winner.")
+            alert(message);
+            console.log("Game Over, No Winner.");
+            window.location.reload();
+
+        }
+
+    }
+
+
+
+
+
     function clickToSetMark(id) {
         const newBoardState = boardState.slice();
         console.log(id, newBoardState[id]);
@@ -88,6 +108,8 @@ export default function GameBoard() {
             setBoardState(newBoardState);
             console.log(id, newBoardState, newBoardState[id]);
             findaWinner(newBoardState);
+            plateFull(newBoardState);
+
         } else { alert("You already used that cell. Choose another cell.") }
     }
     return <div className={style.box}>
