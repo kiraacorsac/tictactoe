@@ -15,16 +15,30 @@ export default function GameBoard() {
 
         return player;
     }
+    // function findaWinner() {
 
+    //     // let patterns =[[0,1,2],[3,4,5], [6,7,8],[0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
+    //     // for (let pattern in patterns) {
+    //     // for (let id in pattern){
+
+    //     // }
+
+    //     let patterns = [1, 3, 4]
+
+    // }
+
+    // }
 
     function clickToSetMark(id) {
         const newBoardState = boardState.slice();
         console.log(id, newBoardState[id]);
 
-        newBoardState[id] = switchMark();
-        setBoardState(newBoardState);
-        console.log(id, newBoardState);
 
+        if (newBoardState[id] == "") {
+            newBoardState[id] = switchMark();
+            setBoardState(newBoardState);
+            console.log(id, newBoardState, newBoardState[id]);
+        } else { alert("You already used that cell. Choose another cell.") }
     }
     return <div>
         <div className={style.row}>
