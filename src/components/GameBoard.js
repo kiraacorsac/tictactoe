@@ -20,6 +20,15 @@ export default function GameBoard() {
         var cellTest = { 0: [1, 3, 4], 1: 3, 2: [2, 3], 3: 1, 6: 1 };
         let signs = ["X", "O"]
 
+        console.log(cellTest, cellTest[6], cellTest["6"], Object.keys(cellTest))
+
+
+        for (let position in cellTest) {
+
+            console.log(position);
+            console.log("IS it showing ?", Object.keys(position), cellTest[position], newBoardState[position]);
+        }
+
         for (let sign in signs) {
             console.log("sign", signs[sign]);
 
