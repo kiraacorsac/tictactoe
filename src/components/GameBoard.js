@@ -17,8 +17,7 @@ export default function GameBoard() {
     }
     function findaWinner(newBoardState) {
 
-        let patterns = [1, 3, 4];
-        let backslash = [2, 4, 6];
+        var cellTest = { 0: [1, 3, 4], 1: 3, 2: [2, 3], 3: 1, 6: 1 };
         let signs = ["X", "O"]
 
         for (let sign in signs) {
