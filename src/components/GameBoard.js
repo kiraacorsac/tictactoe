@@ -49,6 +49,7 @@ export default function GameBoard() {
                             let message = ("We have a Winner! It is Player " + signs[sign])
                             alert(message);
                             console.log("Winner streak:", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]);
+                            window.location.reload(true);
                         } else { console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]) };
                     }
 
@@ -70,6 +71,7 @@ export default function GameBoard() {
                         let message = ("We have a Winner! It is Player " + signs[sign])
                         alert(message);
                         console.log("Winner streak:", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]);
+                        window.location.reload(true);
                     } else { console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]) };
                 }
             }
