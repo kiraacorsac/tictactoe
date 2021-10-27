@@ -46,7 +46,8 @@ export default function GameBoard() {
 
 
                         if (signs[sign] == newBoardState[pos1] && signs[sign] == newBoardState[pos2] && signs[sign] == newBoardState[pos3]) {
-                            alert("We have a Winner!");
+                            let message = ("We have a Winner! It is Player " + signs[sign])
+                            alert(message);
                             console.log("Winner streak:", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]);
                         } else { console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]) };
                     }
@@ -66,7 +67,8 @@ export default function GameBoard() {
 
 
                     if (signs[sign] == newBoardState[pos1] && signs[sign] == newBoardState[pos2] && signs[sign] == newBoardState[pos3]) {
-                        alert("We have a Winner!");
+                        let message = ("We have a Winner! It is Player " + signs[sign])
+                        alert(message);
                         console.log("Winner streak:", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]);
                     } else { console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]) };
                 }
