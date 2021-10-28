@@ -4,14 +4,33 @@ import { useState } from "react";
 
 export default function GameBoard() {
 
-    const [boardState, setBoardState] = useState(["", "", "", "", "", "", "", "", ""])
+    const [boardState, setBoardState] = useState(["", "", "", "", "", "", "", "", ""]);
     const [player, setPlayer] = useState("X");
+    const [broadcast, setBroadcast] = useState("X Starts:");
+    const [replay, setReplay] = useState("");
+    const [nextPlayer, setNextPlayer] = useState("O");
+    const [gameOver, setGameOver] = useState(0);
 
+
+    function reloadPage() {
+        setReplay(<button className={style.button} onClick={() => window.location.reload()}>Play Again ?</button>);
+        return replay;
+
+    }
+
+    function createBroadcast(message, alert = "") {
+        let newMessage = (message + " " + alert)
+        setBroadcast(newMessage);
+        return broadcast;
+    }
 
     function switchMark() {
+        setNextPlayer(player);
         if (player == "X") {
             setPlayer("O");
         } else { setPlayer("X") }
+        let message = (nextPlayer + "  is next:");
+        createBroadcast(message)
         return player;
     }
 
@@ -46,18 +65,16 @@ export default function GameBoard() {
 
 
                     if (signs[sign] == newBoardState[pos1] && signs[sign] == newBoardState[pos2] && signs[sign] == newBoardState[pos3]) {
-                        let message = ("We have a Winner! It is Player " + signs[sign])
-                        alert(message);
+                        let message = ("Player " + signs[sign] + " Wins!")
+                        createBroadcast(message);
                         console.log("Winner streak:", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]);
-                        window.location.reload();
+                        setGameOver(1);
+                        reloadPage();
                     } else { console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]) };
                 }
-
-
             }
         }
     }
-
 
     function plateFull(newBoardState) {
 
@@ -66,33 +83,36 @@ export default function GameBoard() {
 
         } else {
             let message = ("Game Over, No Winner.")
-            alert(message);
+            createBroadcast(message);
             console.log("Game Over, No Winner.");
-            window.location.reload();
-
+            setGameOver(1);
+            reloadPage();
         }
 
     }
-
-
-
-
 
     function clickToSetMark(id) {
         const newBoardState = boardState.slice();
         console.log(id, newBoardState[id]);
 
+        if (gameOver == 0) {
+            if (newBoardState[id] == "") {
+                newBoardState[id] = switchMark();
+                setBoardState(newBoardState);
+                console.log(id, newBoardState, newBoardState[id]);
+                plateFull(newBoardState);
+                findaWinner(newBoardState);
+            } else {
 
-        if (newBoardState[id] == "") {
-            newBoardState[id] = switchMark();
-            setBoardState(newBoardState);
-            console.log(id, newBoardState, newBoardState[id]);
-            findaWinner(newBoardState);
-            plateFull(newBoardState);
-
-        } else { alert("You already used that cell. Choose another cell.") }
+                createBroadcast(player + ", choose a freecell.")
+            }
+        } else {
+            createBroadcast("It's Game Over !")
+        }
     }
     return <div className={style.box}>
+        <div className={style.message}>{broadcast}</div>
+
         <div className={style.row}>
             <Square id="0" board={boardState} onClick={() => clickToSetMark(0)}></Square>
             <Square id="1" board={boardState} onClick={() => clickToSetMark(1)}></Square>
@@ -108,5 +128,6 @@ export default function GameBoard() {
             <Square id="7" board={boardState} onClick={() => clickToSetMark(7)}></Square>
             <Square id="8" board={boardState} onClick={() => clickToSetMark(8)}></Square>
         </div>
+        <div className={style.replay}>{replay}</div>
     </div>
 }
