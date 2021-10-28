@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Clicker from "./components/Clicker"
 import Paragraph from "./components/Paragraph"
@@ -11,7 +11,7 @@ function App() {
       <header>
 
       </header>
-      <main>
+      <main className="box">
 
         <GameBoard></GameBoard>
       </main>

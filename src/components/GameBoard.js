@@ -12,12 +12,12 @@ export default function GameBoard() {
         if (player == "X") {
             setPlayer("O");
         } else { setPlayer("X") }
-
         return player;
     }
+
     function findaWinner(newBoardState) {
 
-        var cellTest = { 0: [1, 3, 4], 1: 3, 2: [2, 3], 3: 1, 6: 1 };
+        var cellTest = { 0: [1, 3, 4], 1: [3], 2: [2, 3], 3: [1], 6: [1] };
         let signs = ["X", "O"]
 
         // console.log(cellTest, cellTest[6], cellTest["6"], Object.keys(cellTest))
@@ -31,34 +31,12 @@ export default function GameBoard() {
 
             const cellList = cellTest[position]
             console.log(cellList)
-            try {
-                for (let factor of cellList) {
-                    console.log("I am a factor, part of a list", factor);
-                    let pos1 = parseInt(position)
-                    let pos2 = pos1 + parseInt(factor)
-                    let pos3 = pos2 + parseInt(factor)
-                    console.log(pos1, pos2, pos3)
-                    for (let sign in signs) {
-                        console.log("sign", signs[sign]);
 
-
-                        console.log(signs[sign], newBoardState[0]);
-
-
-                        if (signs[sign] == newBoardState[pos1] && signs[sign] == newBoardState[pos2] && signs[sign] == newBoardState[pos3]) {
-                            let message = ("We have a Winner! It is Player " + signs[sign])
-                            alert(message);
-                            console.log("Winner streak:", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]);
-                            window.location.reload();
-                        } else { console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]) };
-                    }
-
-                }
-            } catch {
-                console.log("It is not a list", cellList)
+            for (let factor of cellList) {
+                console.log("I am a factor, part of a list", factor);
                 let pos1 = parseInt(position)
-                let pos2 = pos1 + parseInt(cellList)
-                let pos3 = pos2 + parseInt(cellList)
+                let pos2 = pos1 + parseInt(factor)
+                let pos3 = pos2 + parseInt(factor)
                 console.log(pos1, pos2, pos3)
                 for (let sign in signs) {
                     console.log("sign", signs[sign]);
@@ -74,6 +52,8 @@ export default function GameBoard() {
                         window.location.reload();
                     } else { console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]) };
                 }
+
+
             }
         }
     }
