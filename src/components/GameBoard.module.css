@@ -9,3 +9,52 @@
 .box {
     align-items: center;
 }
+
+.message{
+    padding: 15px;
+    max-width: 350px;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(7, 217, 240);
+    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
+    /* font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+}
+
+.replay{
+    /* border: 2px solid rgba(225, 21, 143, 0.5); */
+    /* border-radius: 2px; */
+    
+    background-color: darkslategrey;
+    text-align: center;
+    align-items:center;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(7, 217, 240);
+    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
+    /* font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+}
+
+.button {
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 15px;
+    /* min-width: 64px; */
+   
+    background: transparent;
+   
+    transition: all 0.1s ease-in;
+
+    background-color: darkslategrey;
+    text-align: center;
+    align-items:center;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(7, 217, 240);
+    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
+  }
+   
+  .button:hover {
+    background: transparent;
+    color: #dd5414;
+  }
