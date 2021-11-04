@@ -31,7 +31,7 @@ export default function Game() {
     ])
 
     function currentBoardState() {
-        return boardHistory.at(-1);
+        return boardHistory[boardHistory.length - 1];
     }
 
     const [playerState, setPlayerState] = useState("");
@@ -101,7 +101,7 @@ export default function Game() {
     }
 
     function clickToSetMark(id) {
-        if(gameOver) {
+        if (gameOver) {
             return;
         }
 
