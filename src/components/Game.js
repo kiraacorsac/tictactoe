@@ -31,7 +31,7 @@ export default function Game() {
     ])
 
     function currentBoardState() {
-        return boardHistory.at(-1);
+        return boardHistory[boardHistory.length - 1];
     }
 
     const [playerState, setPlayerState] = useState("");
@@ -92,7 +92,13 @@ export default function Game() {
                         console.log("Winner streak:", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]);
                         setGameOver(true);
                         // reloadPage();
+                        return;
                     } else {
+                        let val = isDraw(newBoardState);
+                        console.log("isDraw:", val);
+                        if (val) {
+                            setMessage("Draw!")
+                        }
                         console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3])
                     };
                 }
@@ -100,8 +106,18 @@ export default function Game() {
         }
     }
 
+    function isDraw(newBoardState) {
+        for (let square of newBoardState) {
+            console.log("current state", newBoardState)
+            if (square == "") {
+                return false;
+            }
+        }
+        return true;
+    }
+
     function clickToSetMark(id) {
-        if(gameOver) {
+        if (gameOver) {
             return;
         }
 
@@ -115,15 +131,13 @@ export default function Game() {
                 newBoardState[id] = "O";
             }
 
-            findaWinner(newBoardState);
-
             let newBoardHistory = boardHistory.slice();
             newBoardHistory.push(newBoardState);
             setBoardHistory(newBoardHistory);
+            findaWinner(newBoardState);
         } else {
             console.error("Attempt to play on occupied square (id:", id, "current value:", currentBoardState()[id], ")")
         }
-
     }
 
 
