@@ -1,6 +1,8 @@
 import GameBoard from "./GameBoard";
+import BoardHistory from "./BoardHistory";
 import { useState } from "react";
 import style from "./Game.module.css";
+
 
 
 export default function Game() {
@@ -54,6 +56,10 @@ export default function Game() {
         } else {
             return "O";
         }
+    }
+
+    function previewHistory(turnNumber){
+        console.log(`Previewing ${turnNumber}`)
     }
 
     function findaWinner(newBoardState) {
@@ -144,6 +150,7 @@ export default function Game() {
     return <>
         <div className={style.turn}>Player {currentPlayerRepresentation()}, it is your turn!</div>
         <GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} />
+        <BoardHistory boardHistory={boardHistory}></BoardHistory>
         <div className={style.message}>{message}</div>
     </>
 }
