@@ -64,7 +64,7 @@ export default function Game() {
         setPreviewedTurn(boardHistory[turnNumber - 1]);
         console.log(`Previewing ${turnNumber}`)
 
-        return previewedTurn
+        // return previewedTurn
     }
 
     function findaWinner(newBoardState) {
