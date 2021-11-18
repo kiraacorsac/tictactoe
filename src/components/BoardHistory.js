@@ -1,3 +1,5 @@
+import Game from "./Game";
+
 export default function BoardHistory(props) {
     console.log(props.boardHistory)
 
@@ -9,7 +11,7 @@ export default function BoardHistory(props) {
             player = "X";
         }
 
-        return <li key={turn} >{turn}. (Player {player})</li>
+        return <li key={turn}><a onClick={() => props.previewHistory(turn)}>{turn}. (Player {player})</a></li>
     }
 
     const historyRepresentation = [];

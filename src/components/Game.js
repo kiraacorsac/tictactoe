@@ -58,7 +58,7 @@ export default function Game() {
         }
     }
 
-    function previewHistory(turnNumber){
+    function previewHistory(turnNumber) {
         console.log(`Previewing ${turnNumber}`)
     }
 
@@ -150,7 +150,8 @@ export default function Game() {
     return <>
         <div className={style.turn}>Player {currentPlayerRepresentation()}, it is your turn!</div>
         <GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} />
-        <BoardHistory boardHistory={boardHistory}></BoardHistory>
+        <BoardHistory boardHistory={boardHistory} previewHistory={previewHistory}></BoardHistory>
+
         <div className={style.message}>{message}</div>
     </>
 }
