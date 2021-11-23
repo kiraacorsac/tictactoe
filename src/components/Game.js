@@ -38,6 +38,8 @@ export default function Game() {
 
     const [playerState, setPlayerState] = useState("");
 
+    const [previewedTurn, setPreviewedTurn] = useState([]);
+
     const [message, setMessage] = useState("");
 
     const [gameOver, setGameOver] = useState(false);
@@ -58,8 +60,11 @@ export default function Game() {
         }
     }
 
-    function previewHistory(turnNumber){
+    function previewHistory(turnNumber) {
+        setPreviewedTurn(boardHistory[turnNumber - 1]);
         console.log(`Previewing ${turnNumber}`)
+
+        // return previewedTurn
     }
 
     function findaWinner(newBoardState) {
@@ -150,7 +155,8 @@ export default function Game() {
     return <>
         <div className={style.turn}>Player {currentPlayerRepresentation()}, it is your turn!</div>
         <GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} />
-        <BoardHistory boardHistory={boardHistory}></BoardHistory>
+        <BoardHistory boardHistory={boardHistory} previewHistory={previewHistory}></BoardHistory>
+        <GameBoard boardState={previewedTurn} clickToSetMark={() => null} />
         <div className={style.message}>{message}</div>
     </>
 }
