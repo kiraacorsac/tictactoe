@@ -38,7 +38,7 @@ export default function Game() {
 
     const [playerState, setPlayerState] = useState("");
 
-    const [previewedTurn, setPreviewedTurn] = useState([]);
+    const [previewedTurn, setPreviewedTurn] = useState(null);
 
     const [message, setMessage] = useState("");
 
@@ -61,10 +61,16 @@ export default function Game() {
     }
 
     function previewHistory(turnNumber) {
-        setPreviewedTurn(boardHistory[turnNumber - 1]);
         console.log(`Previewing ${turnNumber}`)
 
-        // return previewedTurn
+        if (turnNumber == null) {
+            setPreviewedTurn(turnNumber)
+        } else {
+            setPreviewedTurn(boardHistory[turnNumber - 1]);
+            console.log(`Previewing ${turnNumber}`)
+
+            // return previewedTurn
+        }
     }
 
     function findaWinner(newBoardState) {
@@ -150,13 +156,30 @@ export default function Game() {
             console.error("Attempt to play on occupied square (id:", id, "current value:", currentBoardState()[id], ")")
         }
     }
+    function renderPreviewGameBoard() {
+        //return gameboard if previewedState is null
+        if (previewedTurn == null) {
+            return "";
+        } else {
+            return <GameBoard boardState={previewedTurn} clickToSetMark={() => null} />
+        }
+    }
 
+    function resetGame() {
+        setBoardHistory([["", "", "", "", "", "", "", "", ""]]);
+        setPlayerState("");
+        setPreviewedTurn(null);
+        setMessage("");
+        setGameOver(false);
+
+    }
 
     return <>
         <div className={style.turn}>Player {currentPlayerRepresentation()}, it is your turn!</div>
         <GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} />
         <BoardHistory boardHistory={boardHistory} previewHistory={previewHistory}></BoardHistory>
-        <GameBoard boardState={previewedTurn} clickToSetMark={() => null} />
+        {renderPreviewGameBoard()}
         <div className={style.message}>{message}</div>
+        <input type="button" value="reset" onClick={() => resetGame()}></input>
     </>
 }
