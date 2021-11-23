@@ -32,17 +32,35 @@ export default function Game() {
         ]
     ])
 
-    function currentBoardState() {
-        return boardHistory[boardHistory.length - 1];
-    }
-
     const [playerState, setPlayerState] = useState("");
 
-    const [previewedTurn, setPreviewedTurn] = useState([]);
+    const [previewedTurn, setPreviewedTurn] = useState(null);
 
     const [message, setMessage] = useState("");
 
     const [gameOver, setGameOver] = useState(false);
+
+    function resetGame() {
+        console.log("Resetting...")
+        setBoardHistory(
+            [[
+                "", "", "", //
+                "", "", "", //
+                "", "", ""
+            ]]
+        );
+        setPlayerState("");
+        setPreviewedTurn(null);
+        setMessage("");
+        setGameOver(false);
+
+
+    }
+
+
+    function currentBoardState() {
+        return boardHistory[boardHistory.length - 1];
+    }
 
     function switchPlayer() {
         if (playerState == "player1") {
@@ -61,8 +79,13 @@ export default function Game() {
     }
 
     function previewHistory(turnNumber) {
-        setPreviewedTurn(boardHistory[turnNumber - 1]);
-        console.log(`Previewing ${turnNumber}`)
+        if (turnNumber != null) {
+            console.log(`Previewing ${turnNumber}`)
+            setPreviewedTurn(boardHistory[turnNumber - 1]);
+        } else {
+            setPreviewedTurn(null);
+        }
+
 
         // return previewedTurn
     }
@@ -152,11 +175,23 @@ export default function Game() {
     }
 
 
+    function renderPreviewGameBoard() {
+
+        if (previewedTurn == null) {
+            // return empty tag if not previewing state
+            return <></>;
+        } else {
+            // return game board if previewing state
+            return <GameBoard boardState={previewedTurn} clickToSetMark={() => null} />
+        }
+    }
+
     return <>
         <div className={style.turn}>Player {currentPlayerRepresentation()}, it is your turn!</div>
         <GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} />
         <BoardHistory boardHistory={boardHistory} previewHistory={previewHistory}></BoardHistory>
-        <GameBoard boardState={previewedTurn} clickToSetMark={() => null} />
+        {renderPreviewGameBoard()}
         <div className={style.message}>{message}</div>
+        <input type="button" value="Reset" onClick={() => resetGame()} />
     </>
 }
