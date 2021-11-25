@@ -1,8 +1,13 @@
 import GameBoard from "./GameBoard";
 import BoardHistory from "./BoardHistory";
+import WinHistory from "./WinHistory";
 import { useState } from "react";
 import style from "./Game.module.css";
 
+
+// TODO list:
+// history of who won/lose
+// travel in time on click in history
 
 
 export default function Game() {
@@ -31,6 +36,8 @@ export default function Game() {
             "", "", ""
         ]
     ])
+
+    const [winnerList, setWinnerList] = useState([])
 
     const [playerState, setPlayerState] = useState("");
 
@@ -90,54 +97,45 @@ export default function Game() {
         // return previewedTurn
     }
 
+    function appendToWinnerList(winningPlayer) {
+        let newWinnerList = winnerList.slice();
+        newWinnerList.push(winningPlayer);
+        setWinnerList(newWinnerList);
+    }
+
     function findaWinner(newBoardState) {
 
         var cellTest = { 0: [1, 3, 4], 1: [3], 2: [2, 3], 3: [1], 6: [1] };
         let signs = ["X", "O"]
 
-        // console.log(cellTest, cellTest[6], cellTest["6"], Object.keys(cellTest))
-
-
         for (let position in cellTest) {
-
-            console.log("Position", position);
-            // console.log("IS it showing ?", Object.keys(position), cellTest[position], newBoardState[position]);
-            console.log("IS it showing ?", cellTest[position]);
-
             const cellList = cellTest[position]
-            console.log(cellList)
-
             for (let factor of cellList) {
-                console.log("I am a factor, part of a list", factor);
                 let pos1 = parseInt(position)
                 let pos2 = pos1 + parseInt(factor)
                 let pos3 = pos2 + parseInt(factor)
-                console.log(pos1, pos2, pos3)
                 for (let sign in signs) {
-                    console.log("sign", signs[sign]);
-
-
-                    console.log(signs[sign], newBoardState[0]);
-
 
                     if (signs[sign] == newBoardState[pos1] && signs[sign] == newBoardState[pos2] && signs[sign] == newBoardState[pos3]) {
                         let message = ("Player " + signs[sign] + " Wins!")
+                        appendToWinnerList(signs[sign]);
                         setMessage(message);
-                        console.log("Winner streak:", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3]);
                         setGameOver(true);
                         // reloadPage();
                         return;
                     } else {
                         let val = isDraw(newBoardState);
-                        console.log("isDraw:", val);
                         if (val) {
                             setMessage("Draw!")
+                            appendToWinnerList("-");
                         }
-                        console.log("no winner yet", signs[sign], newBoardState[pos1], newBoardState[pos2], newBoardState[pos3])
                     };
                 }
             }
         }
+
+
+
     }
 
     function isDraw(newBoardState) {
@@ -187,6 +185,7 @@ export default function Game() {
     }
 
     return <>
+        <WinHistory winHistory={winnerList} ></WinHistory>
         <div className={style.turn}>Player {currentPlayerRepresentation()}, it is your turn!</div>
         <GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} />
         <BoardHistory boardHistory={boardHistory} previewHistory={previewHistory}></BoardHistory>
