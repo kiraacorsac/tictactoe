@@ -77,12 +77,19 @@ export default function Game() {
         }
     }
 
-    function currentPlayerRepresentation() {
-        if (playerState == "player1") {
-            return "X";
-        } else {
-            return "O";
-        }
+    function goBackInTime(turnNumber) {
+        console.log(turnNumber)
+    }
+
+    function currentMessage() {
+        if (message == "") {
+            if (playerState == "player1") {
+                return "It's X's turn";
+            } else {
+                return "It's O's turn";
+            }
+
+        } else { return message };
     }
 
     function previewHistory(turnNumber) {
@@ -121,6 +128,7 @@ export default function Game() {
                         appendToWinnerList(signs[sign]);
                         setMessage(message);
                         setGameOver(true);
+
                         // reloadPage();
                         return;
                     } else {
@@ -185,12 +193,17 @@ export default function Game() {
     }
 
     return <>
-        <WinHistory winHistory={winnerList} ></WinHistory>
-        <div className={style.turn}>Player {currentPlayerRepresentation()}, it is your turn!</div>
-        <GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} />
-        <BoardHistory boardHistory={boardHistory} previewHistory={previewHistory}></BoardHistory>
-        {renderPreviewGameBoard()}
-        <div className={style.message}>{message}</div>
-        <input type="button" value="Reset" onClick={() => resetGame()} />
+        <div className={style.dashboard}>
+            <div><WinHistory winHistory={winnerList} ></WinHistory></div>
+            <div className={style.turn}>{currentMessage()}</div>
+            {/* <div className={style.message}>{message}</div> */}
+            <div className={style.board_origin}><GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} /> {renderPreviewGameBoard()}</div>
+            {/* <div className={StyleSheet.board_replay}> </div> */}
+            <div><BoardHistory className={style.history} boardHistory={boardHistory} previewHistory={previewHistory} goBackInTime={goBackInTime}></BoardHistory></div>
+
+            <div><input type="button" className={style.btn} value="Reset" onClick={() => resetGame()} /></div>
+        </div>
+
+
     </>
 }

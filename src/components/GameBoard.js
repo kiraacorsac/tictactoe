@@ -3,7 +3,7 @@ import style from "./GameBoard.module.css";
 
 export default function GameBoard(props) {
 
-    return <div>
+    return <div className={style.board}>
         <div className={style.row}>
             <Square id="0" board={props.boardState} onClick={() => props.clickToSetMark(0)}></Square>
             <Square id="1" board={props.boardState} onClick={() => props.clickToSetMark(1)}></Square>

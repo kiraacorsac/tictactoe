@@ -1,9 +1,63 @@
+
+.dashboard{
+display: flex;
+flex-direction:column;
+align-content: space-between;
+align-items:center;
+
+}
+
 .turn {
-    color: white;
-    font-size: larger;
+    padding: 15px;
+    max-width: 350px;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(7, 217, 240);
+    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
 }
 
 .message {
-    color: white;
-    font-size: xx-large;
+    padding: 15px;
+    max-width: 350px;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(7, 217, 240);
+    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
 }
+
+.history{
+    background-color: darkslategrey;
+    text-align: center;
+    align-items:center;
+    font-size: 30px;
+    color: rgb(7, 217, 240);
+    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
+
+}
+
+.board_origin {
+    display: flex;
+}
+
+
+
+.btn{
+    
+    font-size: 30px;
+    width: 160px;
+    height: 80px;
+    border: 0px;
+    color:rgb(74, 210, 225);
+    
+    background-color: darkslategrey;
+    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
+  }
+  
+  .btn:hover{
+    color:rgb(243, 10, 10);
+    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
+  }
+ 
+  

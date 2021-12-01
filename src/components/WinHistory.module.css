@@ -1,4 +1,9 @@
 .history {
-    color: white;
-    font-size: xx-large;
+    background-color: darkslategrey;
+    text-align: center;
+    align-items:center;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(7, 217, 240);
+    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
 }

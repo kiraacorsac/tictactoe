@@ -1,4 +1,4 @@
-import Game from "./Game";
+
 
 export default function BoardHistory(props) {
     console.log(props.boardHistory)
@@ -11,10 +11,11 @@ export default function BoardHistory(props) {
             player = "X";
         }
 
-        return <li key={turn}><a
+        return <div className={props.className}><li key={turn}><a
             onMouseOver={() => props.previewHistory(turn)}
             onMouseOut={() => props.previewHistory(null)}
-        >{turn}. (Player {player})</a></li>
+            onClick={() => props.goBackInTime(turn)}
+        >{turn}. (Player {player})</a></li></div>
     }
 
     const historyRepresentation = [];
@@ -27,7 +28,7 @@ export default function BoardHistory(props) {
 
     console.log(historyRepresentation.reverse());
 
-    return <ul>
+    return <ul className={props.className}>
         {historyRepresentation}
     </ul>
 }
