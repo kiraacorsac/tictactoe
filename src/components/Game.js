@@ -41,7 +41,7 @@ export default function Game() {
 
     const [playerState, setPlayerState] = useState("");
 
-    const [previewedTurn, setPreviewedTurn] = useState(null);
+    const [previewedTurn, setPreviewedTurn] = useState([]);
 
     const [message, setMessage] = useState("");
 
@@ -57,7 +57,7 @@ export default function Game() {
             ]]
         );
         setPlayerState("");
-        setPreviewedTurn(null);
+        setPreviewedTurn([]);
         setMessage("");
         setGameOver(false);
 
@@ -97,7 +97,7 @@ export default function Game() {
             console.log(`Previewing ${turnNumber}`)
             setPreviewedTurn(boardHistory[turnNumber - 1]);
         } else {
-            setPreviewedTurn(null);
+            setPreviewedTurn([]);
         }
 
 
