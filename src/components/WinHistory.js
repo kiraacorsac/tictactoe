@@ -26,7 +26,7 @@ export default function WinHistory(props) {
     }
 
     return <div className={style.history}>
-        Home  {xWon()} : {oWon()}  Visitor <br></br>
+        Home  {oWon()} : {xWon()}  Visitor <br></br>
         Draw: {drawn()}<br></br><br></br>
     </div>
 }

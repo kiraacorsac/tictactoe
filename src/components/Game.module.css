@@ -40,6 +40,7 @@ align-items:center;
     padding-left: 0;
     background-color: darkslategrey;
     text-align:center;
+    min-width: 140px;
     /* align-items:stretch; */
     /* vertical-align: middle; */
     font-size: 22px;
