@@ -198,7 +198,7 @@ export default function Game() {
             return <></>;
         } else {
             // return game board if previewing state
-            return <GameBoard boardState={previewedTurn} clickToSetMark={() => null} />
+            return <GameBoard previewColor={true} boardState={previewedTurn} clickToSetMark={() => null} />
         }
     }
 
