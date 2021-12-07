@@ -79,6 +79,16 @@ export default function Game() {
 
     function goBackInTime(turnNumber) {
         console.log(turnNumber)
+        let newBoardHistory = boardHistory.slice(0, turnNumber);
+        setBoardHistory(newBoardHistory);
+        setMessage("");
+        setGameOver(false);
+        let player = "player2";
+        if (turnNumber % 2 == 0) {
+            player = "player1";
+        }
+        setPlayerState(player);
+
     }
 
     function currentMessage() {
@@ -196,10 +206,13 @@ export default function Game() {
         <div className={style.dashboard}>
             <div><WinHistory winHistory={winnerList} ></WinHistory></div>
             <div className={style.turn}>{currentMessage()}</div>
-            {/* <div className={style.message}>{message}</div> */}
-            <div className={style.board_origin}><GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} /> {renderPreviewGameBoard()}</div>
-            {/* <div className={StyleSheet.board_replay}> </div> */}
-            <div><BoardHistory className={style.history} boardHistory={boardHistory} previewHistory={previewHistory} goBackInTime={goBackInTime}></BoardHistory></div>
+
+            <div className={style.blocks}>
+                <div className={style.board_origin}><GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} /> </div>
+                <div><BoardHistory className={style.history} boardHistory={boardHistory} previewHistory={previewHistory} goBackInTime={goBackInTime}></BoardHistory></div>
+                <div className={style.board_history}>{renderPreviewGameBoard()}</div>
+            </div>
+
 
             <div><input type="button" className={style.btn} value="Reset" onClick={() => resetGame()} /></div>
         </div>

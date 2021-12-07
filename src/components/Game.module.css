@@ -7,6 +7,14 @@ align-items:center;
 
 }
 
+.blocks{
+
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items:flex-start;
+}
+
 .turn {
     padding: 15px;
     max-width: 350px;
@@ -14,7 +22,7 @@ align-items:center;
     text-align: center;
     font-size: 30px;
     color: rgb(7, 217, 240);
-    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
+    text-shadow: 1px 1px 2px rgb(26, 134, 35), 0 0 1em rgb(242, 255, 0), 0 0 0.2em rgba(157, 255, 0, 0.837);
 }
 
 .message {
@@ -24,21 +32,30 @@ align-items:center;
     text-align: center;
     font-size: 30px;
     color: rgb(7, 217, 240);
-    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
+    text-shadow: 1px 1px 2px rgb(26, 134, 35), 0 0 1em rgb(242, 255, 0), 0 0 0.2em rgba(157, 255, 0, 0.837);
 }
 
 .history{
+    list-style-type:none ;
+    padding-left: 0;
     background-color: darkslategrey;
-    text-align: center;
-    align-items:center;
-    font-size: 30px;
+    text-align:center;
+    /* align-items:stretch; */
+    /* vertical-align: middle; */
+    font-size: 22px;
     color: rgb(7, 217, 240);
-    text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
+    text-shadow: 1px 1px 2px rgb(26, 134, 35), 0 0 1em rgb(242, 255, 0), 0 0 0.2em rgba(157, 255, 0, 0.837);
 
 }
 
+
 .board_origin {
     display: flex;
+}
+
+.board_history{
+    display: flex;
+    
 }
 
 
@@ -49,7 +66,7 @@ align-items:center;
     width: 160px;
     height: 80px;
     border: 0px;
-    color:rgb(74, 210, 225);
+    color:rgb(117, 28, 169);
     
     background-color: darkslategrey;
     text-shadow: 1px 1px 2px rgb(176, 86, 211), 0 0 1em rgb(255, 47, 0), 0 0 0.2em rgba(251, 255, 0, 0.837);
