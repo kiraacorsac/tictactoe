@@ -6,7 +6,6 @@ import style from "./Game.module.css";
 
 
 // TODO list:
-// history of who won/lose
 // travel in time on click in history
 
 
@@ -96,6 +95,25 @@ export default function Game() {
 
         // return previewedTurn
     }
+
+    function goBackInTime(turnNumber) {
+        console.log(turnNumber);
+
+        //delete unwanted states from newBoardHistor
+        let newBoardHistory = boardHistory.slice(0, turnNumber);
+        setBoardHistory(newBoardHistory);
+        setMessage("");
+        setGameOver(false);
+
+        setPlayerState("player2");
+        if (turnNumber % 2 == 0) {
+            setPlayerState("player1");
+        }
+
+
+
+    }
+
 
     function appendToWinnerList(winningPlayer) {
         let newWinnerList = winnerList.slice();
@@ -188,7 +206,12 @@ export default function Game() {
         <WinHistory winHistory={winnerList} ></WinHistory>
         <div className={style.turn}>Player {currentPlayerRepresentation()}, it is your turn!</div>
         <GameBoard boardState={currentBoardState()} clickToSetMark={clickToSetMark} />
-        <BoardHistory boardHistory={boardHistory} previewHistory={previewHistory}></BoardHistory>
+        <BoardHistory
+            boardHistory={boardHistory}
+            previewHistory={previewHistory}
+            goBackInTime={goBackInTime}
+        >
+        </BoardHistory>
         {renderPreviewGameBoard()}
         <div className={style.message}>{message}</div>
         <input type="button" value="Reset" onClick={() => resetGame()} />

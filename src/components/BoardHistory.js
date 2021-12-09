@@ -1,5 +1,3 @@
-import Game from "./Game";
-
 export default function BoardHistory(props) {
     console.log(props.boardHistory)
 
@@ -14,6 +12,7 @@ export default function BoardHistory(props) {
         return <li key={turn}><a
             onMouseOver={() => props.previewHistory(turn)}
             onMouseOut={() => props.previewHistory(null)}
+            onClick={() => props.goBackInTime(turn)}
         >{turn}. (Player {player})</a></li>
     }
 
