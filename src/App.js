@@ -1,18 +1,26 @@
+import { findAllByDisplayValue } from '@testing-library/dom';
 import { useState } from 'react';
 import './App.css';
 function App() {
 
   const [getTodo, setTodo] = useState("")
+
   const [getNumber, setNumber] = useState(0)
 
+  var apiKey = "6de9bfb3c9bb1f5bb3f71b73e0e0dc0d"
+  var city = "Bratislava"
+
   function fetchSelectedData() {
-    let request = fetch("https://jsonplaceholder.typicode.com/todos/" + getNumber)
+
+    let request = fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey)
       .then((data) => { return data.json() })
       .then((parsedData) => {
         console.log(parsedData);
         setTodo(parsedData)
       })
   }
+
+
 
   function fetchData() {
     // console.log("Fetching...")
@@ -40,10 +48,10 @@ function App() {
 
   return (
     <div>
-      <input type="number" onChange={handleNumberChange} />
+      {/* <input type="number" onChange={handleNumberChange} /> */}
       <input type="button" value="Fetch data!" onClick={fetchSelectedData} />
       <h2 style={{ color: "white" }}>
-        {getTodo.title}
+        {getTodo.name}
       </h2>
     </div >
   );
