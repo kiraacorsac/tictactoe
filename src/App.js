@@ -5,7 +5,7 @@ function App() {
 
   const [getTodo, setTodo] = useState("")
 
-  const [getNumber, setNumber] = useState(0)
+
 
   var apiKey = "6de9bfb3c9bb1f5bb3f71b73e0e0dc0d"
   var city = "Bratislava"
@@ -21,30 +21,6 @@ function App() {
   }
 
 
-
-  function fetchData() {
-    // console.log("Fetching...")
-    // let request = fetch("https://jsonplaceholder.typicode.com/todos/15"); // pending, fullfiled, rejected
-
-    // request.then((data) => { // occures when fullfiled
-    //   return data.json();
-    // }).then((parsedData) => {
-    //   console.log(parsedData);
-    //   setTodo(parsedData);
-    // })
-
-    // request.catch((err) => {
-    //   console.error("Promise failed!")
-    //   console.error(err);
-    // })
-
-    console.log("Fetching end...")
-  }
-
-  function handleNumberChange(e) {
-    const parsedNumber = Number(e.target.value);
-    setNumber(parsedNumber)
-  }
 
   function getKeyValuePairs(json_object) {
     let array = (["", ""]);
@@ -67,15 +43,15 @@ function App() {
 
   return (
     <div>
-      {/* <input type="number" onChange={handleNumberChange} /> */}
+
       <input type="button" value="Fetch data!" onClick={fetchSelectedData} />
-      <h2 style={{ color: "white" }}>
+      <h2 style={{ color: "orange" }}>
         {getTodo.name}
       </h2>
-      <h3 style={{ color: "lightblue" }}> Temperature:
+      <h3 style={{ color: "red" }}> <b>Temperature:</b><br></br>
         {getKeyValuePairs(getTodo.main)}
       </h3>
-      <h3 style={{ color: "lightblue" }}> Wind Speed:
+      <h3 style={{ color: "yellow" }}> <b>Wind Speed:</b><br></br>
         {getKeyValuePairs(getTodo.wind)}
       </h3>
     </div >
