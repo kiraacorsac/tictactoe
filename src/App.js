@@ -1,4 +1,4 @@
-import { findAllByDisplayValue } from '@testing-library/dom';
+
 import { useState } from 'react';
 import './App.css';
 function App() {
@@ -42,7 +42,7 @@ function App() {
   }
 
   return (
-    <div>
+    <><div>
 
       <input type="button" value="Fetch data!" onClick={fetchSelectedData} />
       <h2 style={{ color: "orange" }}>
@@ -55,6 +55,21 @@ function App() {
         {getKeyValuePairs(getTodo.wind)}
       </h3>
     </div >
+      <div>
+        <h2>
+          testing Pressure<br></br>
+          Pressure: {getTodo.main.pressure}<br></br>
+          Temp: {getTodo.main.temp}<br></br>
+          Humidity: {getTodo.main.humidity}<br></br>
+          Wind: {getTodo.wind.speed}<br></br>
+          Wind direction: {getTodo.wind.deg}<br></br>
+          Coord: {getTodo.coord.lon}, {getTodo.coord.lat}<br></br>
+          Weather: {getTodo.weather.description}<br></br>
+          Weather: {getTodo.weather.id}, {getTodo.weather.main}<br></br>
+          Cloud: {getTodo.clouds.all}<br></br>
+        </h2>
+      </div>
+    </>
   );
 }
 
