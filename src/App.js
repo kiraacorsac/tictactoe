@@ -46,6 +46,25 @@ function App() {
     setNumber(parsedNumber)
   }
 
+  function getKeyValuePairs(json_object) {
+    let array = (["", ""]);
+
+    for (var value in json_object) {
+      let pair = (value + " : " + json_object[value] + "  ");
+      console.log("Array", array);
+      let newArray = array.slice();
+      console.log("New Array", newArray);
+      newArray.push(pair);
+      array = newArray;
+      console.log("Full Chabang", pair, array, newArray)
+
+    }
+
+
+
+    return array;
+  }
+
   return (
     <div>
       {/* <input type="number" onChange={handleNumberChange} /> */}
@@ -53,6 +72,12 @@ function App() {
       <h2 style={{ color: "white" }}>
         {getTodo.name}
       </h2>
+      <h3 style={{ color: "lightblue" }}> Temperature:
+        {getKeyValuePairs(getTodo.main)}
+      </h3>
+      <h3 style={{ color: "lightblue" }}> Wind Speed:
+        {getKeyValuePairs(getTodo.wind)}
+      </h3>
     </div >
   );
 }
