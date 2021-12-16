@@ -12,7 +12,7 @@ function App() {
 
   function fetchSelectedData() {
 
-    let request = fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey)
+    let request = fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=metric")
       .then((data) => { return data.json() })
       .then((parsedData) => {
         console.log(parsedData);
@@ -40,6 +40,31 @@ function App() {
 
     return array;
   }
+  function getTargetData(getTodo) {
+    if (getTodo == "") {
+      return ""
+    }
+
+    return <div>
+
+      <h2>
+        testing Pressure<br></br>
+        Pressure: {getTodo.main.pressure}<br></br>
+        Temp: {getTodo.main.temp}<br></br>
+        Humidity: {getTodo.main.humidity}<br></br>
+        Wind: {getTodo.wind.speed}<br></br>
+        Wind direction: {getTodo.wind.deg}<br></br>
+        Coord: {getTodo.coord.lon}, {getTodo.coord.lat}<br></br>
+        <img src={"https://openweathermap.org/img/wn/" + getTodo.weather[0].icon + "@2x.png"}></img><br></br>
+        Weather: {getTodo.weather[0].description}<br></br>
+        Weather: {getTodo.weather[0].id}, {getTodo.weather[0].main}<br></br>
+        Cloud: {getTodo.clouds.all}<br></br>
+      </h2>
+      <img src={"https://tile.openweathermap.org/map/clouds_new/10/560/355.png?appid=" + apiKey} ></img>
+
+    </div>
+  }
+
 
   return (
     <><div>
@@ -54,21 +79,9 @@ function App() {
       <h3 style={{ color: "yellow" }}> <b>Wind Speed:</b><br></br>
         {getKeyValuePairs(getTodo.wind)}
       </h3>
+      <h3>{getTargetData(getTodo)}</h3>
+      {/* <h3>{getTodo.main.temp}</h3> */}
     </div >
-      <div>
-        <h2>
-          testing Pressure<br></br>
-          Pressure: {getTodo.main.pressure}<br></br>
-          Temp: {getTodo.main.temp}<br></br>
-          Humidity: {getTodo.main.humidity}<br></br>
-          Wind: {getTodo.wind.speed}<br></br>
-          Wind direction: {getTodo.wind.deg}<br></br>
-          Coord: {getTodo.coord.lon}, {getTodo.coord.lat}<br></br>
-          Weather: {getTodo.weather.description}<br></br>
-          Weather: {getTodo.weather.id}, {getTodo.weather.main}<br></br>
-          Cloud: {getTodo.clouds.all}<br></br>
-        </h2>
-      </div>
     </>
   );
 }
